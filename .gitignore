@@ -1,5 +1,6 @@
 .gradle
 .history
+.idea
 node_modules
 tsc
 ./cypress/report
