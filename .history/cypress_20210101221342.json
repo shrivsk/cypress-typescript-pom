@@ -1,0 +1,37 @@
+{
+  "integrationFolder": "cypress/integration/test",
+  "projectId": "kywcy5",
+  "supportFile": false,
+  "viewportHeight": 900,
+  "viewportWidth": 1440,
+  "firefoxGcInterval": null,
+  "retries": {
+    "runMode": 2,
+    "openMode": 1
+  },
+  "env": {
+    "apiTestingSupportUrl": "https://idam-api.aat.platform.hmcts.net/testing-support/accounts",
+    "pfeUrl": "https://petitioner-frontend-aks.aat.platform.hmcts.net/index",
+    "ccdbetaEmail": "divorce_as_caseworker_beta", 
+    "ccdSolicitorEmail": "divorce_as_caseworker_solicitor",
+    "ccdSolicitorEmail": "divorce_as_caseworker_la",
+    "ccdSolicitorEmail": "divorce_as_caseworker_solicitor",
+    @mailinator.com
+@mailinator.com
+@mailinator.com
+divorce_as_caseworker_sueruser@mailinator.com
+    "password": "Testing1234",
+    "allureResultsPath": "cypress/reports/allureResults"
+  },
+  "reporter": "cypress-multi-reporters",
+  "reporterOptions": {
+      "reporterEnabled": "mochawesome",
+      "mochawesomeReporterOptions": {
+          "reportDir": "cypress/reports/mocha",
+          "quite": true,
+          "overwrite": false,
+          "html": false,
+          "json": true
+      }
+  }
+}

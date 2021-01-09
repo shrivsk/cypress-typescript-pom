@@ -1,0 +1,111 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 1,
+    "passes": 0,
+    "pending": 0,
+    "failures": 1,
+    "start": "2021-01-09T03:36:45.763Z",
+    "end": "2021-01-09T03:36:46.921Z",
+    "duration": 1158,
+    "testsRegistered": 1,
+    "passPercent": 0,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "22acf03f-2cad-4295-815c-b208a66ca83c",
+      "title": "",
+      "fullFile": "cypress/integration/test/api/create_idam_user.spec.ts",
+      "file": "cypress/integration/test/api/create_idam_user.spec.ts",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "22cef1bb-7ae2-4f30-a207-550609d4f44c",
+          "title": "Crearte User with API",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "successfully create IDAM User using API",
+              "fullTitle": "Crearte User with API successfully create IDAM User using API",
+              "timedOut": null,
+              "duration": 354,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": null,
+              "code": "cy.log(\"\\\"Before API request user email ID :--> (\\\"\" + testEmail + \"\\\")\\\"\");\ncy.request('POST', \"\" + apiCreateUserUrl, {\n    'email': \"\" + testEmail,\n    'forename': 'PFE TEST',\n    'surname': 'TEST',\n    'password': \"\" + Cypress.env(\"password\"),\n    'roles': [{\n            'code': 'citizen'\n        }]\n}).then(function (response) {\n    expect(response.status).to.eq(201);\n});\ncy.log(\"\\\"After AIP request user email :--> (\\\"\" + testEmail + \"\\\")\\\"\");",
+              "err": {
+                "message": "CypressError: `cy.request()` must be provided a fully qualified `url` - one that begins with `http`. By default `cy.request()` will use either the current window's origin or the `baseUrl` in `/Users/Shared/SumitWorking/CurrentWorking/cypress-automation-typescript-POM/cypress.json`. Neither of those values were present.\n\nhttps://on.cypress.io/request",
+                "estack": "CypressError: `cy.request()` must be provided a fully qualified `url` - one that begins with `http`. By default `cy.request()` will use either the current window's origin or the `baseUrl` in `/Users/Shared/SumitWorking/CurrentWorking/cypress-automation-typescript-POM/cypress.json`. Neither of those values were present.\n\nhttps://on.cypress.io/request\n    at Context.request (http://localhost:61582/__cypress/runner/cypress_runner.js:158904:19)\nFrom Your Spec Code:\n    at Context.eval (http://localhost:61582/__cypress/tests?p=cypress/integration/test/api/create_idam_user.spec.ts:107:12)",
+                "diff": null
+              },
+              "uuid": "26252b33-2063-44b6-ada3-219a17deb7b4",
+              "parentUUID": "22cef1bb-7ae2-4f30-a207-550609d4f44c",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [],
+          "failures": [
+            "26252b33-2063-44b6-ada3-219a17deb7b4"
+          ],
+          "pending": [],
+          "skipped": [],
+          "duration": 354,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": true,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "6.2.1"
+    },
+    "marge": {
+      "options": {
+        "id": "default",
+        "reportDir": "cypress/reports/mocha",
+        "quite": true,
+        "overwrite": false,
+        "html": true,
+        "json": true
+      },
+      "version": "5.1.0"
+    }
+  }
+}

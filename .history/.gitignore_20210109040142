@@ -1,0 +1,7 @@
+.gradle
+.history
+../node_modules
+tsc
+./cypress/report
+.cypress/screenshots
+./cypress/videos

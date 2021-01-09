@@ -1,0 +1,107 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 1,
+    "passes": 1,
+    "pending": 0,
+    "failures": 0,
+    "start": "2021-01-09T03:36:54.927Z",
+    "end": "2021-01-09T03:36:55.012Z",
+    "duration": 85,
+    "testsRegistered": 1,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "f6f487f9-8221-44c9-9e7e-aa37141b7486",
+      "title": "",
+      "fullFile": "cypress/integration/test/ui/pfe_create_user.spec.ts",
+      "file": "cypress/integration/test/ui/pfe_create_user.spec.ts",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "181d72e8-8d5f-4968-8ff6-d4d65680b1be",
+          "title": "Successfully create PFE/RFE user",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Successfully create PFE/RFE user",
+              "fullTitle": "Successfully create PFE/RFE user Successfully create PFE/RFE user",
+              "timedOut": null,
+              "duration": 44,
+              "state": "passed",
+              "speed": "medium",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "return __awaiter(void 0, void 0, void 0, function () {\n        return __generator(this, function (_a) {\n            ccdCaseId = pfeCreateUser.createAatIdamUser();\n            return [2 /*return*/];\n        });\n    });",
+              "err": {},
+              "uuid": "2d4008fc-fa5a-454d-8c00-a76b0dd99ba4",
+              "parentUUID": "181d72e8-8d5f-4968-8ff6-d4d65680b1be",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "2d4008fc-fa5a-454d-8c00-a76b0dd99ba4"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 44,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": true,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "6.2.1"
+    },
+    "marge": {
+      "options": {
+        "id": "default",
+        "reportDir": "cypress/reports/mocha",
+        "quite": true,
+        "overwrite": false,
+        "html": true,
+        "json": true
+      },
+      "version": "5.1.0"
+    }
+  }
+}

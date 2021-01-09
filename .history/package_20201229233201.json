@@ -1,0 +1,15 @@
+{
+  "name": "cypress-automation-typescript-POM",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  
+  "dependencies": {
+    "cypress": "^6.2.0",
+    "typescript": "^4.1.3"
+  },
+  
+  "keywords": [],
+  "author": "Sumit Shrivastava",
+  "license": "ISC"
+}
