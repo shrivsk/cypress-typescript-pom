@@ -85,3 +85,10 @@ CCD-AAT-EmailID: pfe_test_97723@mailinator.com
 CCD-AAT-EmailID:--> pfe_test_535720@mailinator.com
 CCD-AAT-EmailID --> pfe_test_371825@mailinator.com
 CCD-AAT-EmailID => pfe_test_331607@mailinator.com
+'CCD-Demo-CaseId:-'+pfe_test_739741@mailinator.com
+'CCD-Demo-CaseId:-'+pfe_test_787137@mailinator.com
+CCD-AAT-EmailID => pfe_test_288071@mailinator.com
+CCD-AAT-EmailID => pfe_test_398529@mailinator.com
+CCD-AAT-EmailID => pfe_test_909145@mailinator.com
+CCD-AAT-EmailID => pfe_test_100672@mailinator.com
+CCD-AAT-EmailID => pfe_test_66081@mailinator.com

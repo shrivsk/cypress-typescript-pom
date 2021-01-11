@@ -15,14 +15,14 @@ describe('Successfully create Adultery case using PFE', () => {
     })
   })
 
-  it('Successfully create basic Adultery case using PFE', async () => {
+  it.only('Successfully create basic Adultery case using PFE', async () => {
     pbasic.basicAdulteryCase()
-    exuiLoginPg.openCcdAatUrl()
-    exuiLoginPg.enterCcdBetaUserID()
-    exuiLoginPg.enterPassword()
-    exuiLoginPg.clickSubmitButton()
-    cy.log('##########['+pfeCaseId.ccdAatCaseId+']##########')
-    cy.visit(`${Cypress.env("ccdAatUrl")}`+'/case-details/'+pfeCaseId.ccdAatCaseId)
-    cy.reload(true)  
+    // exuiLoginPg.openCcdAatUrl()
+    // exuiLoginPg.enterCcdBetaUserID()
+    // exuiLoginPg.enterPassword()
+    // exuiLoginPg.clickSubmitButton()
+    // cy.log('##########['+pfeCaseId.ccdAatCaseId+']##########')
+    // cy.visit(`${Cypress.env("ccdAatUrl")}`+'/case-details/'+pfeCaseId.ccdAatCaseId)
+    // cy.reload(true)  
   })
 })

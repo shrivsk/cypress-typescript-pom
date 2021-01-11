@@ -7,7 +7,7 @@ let ccdCaseId
 describe('Successfully create PFE/RFE user', () => {
   const pfeCreateUser = new pfeLoginPage()
 
-  it.only('Successfully create PFE/RFE user', async () => {
+  it('Successfully create PFE/RFE user', async () => {
     ccdCaseId = pfeCreateUser.createAatIdamUser()
   })
 })

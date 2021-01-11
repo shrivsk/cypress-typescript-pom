@@ -1,25 +1,23 @@
 /// <reference types="cypress" />
 // ***********************************************
-import { ccdLoginPage } from '../../pageObjects/loginPage/ccdLoginPage'
+import { exuiLoginPage } from '../../pageObjects/exuiPages/loginPage'
 import "../../../support/commands"
 // ***********************************************
 
 // ***********************************************
 describe('Successfully create Adultery case using PFE', () => {
-  const ccdLoginPg = new ccdLoginPage()
+  const exuiLoginPg = new exuiLoginPage()
 
-  it.only('Successfully create basic Adultery case using CCD Solicitor', async () => {
-    const sum = ccdLoginPg.sumit()
-    cy.log(`${sum}`)
-    // ccdLoginPg.openCcdAatUrl()
-    // ccdLoginPg.enterCcdSolicitorUserID()
-    // ccdLoginPg.enterPassword()
-    // ccdLoginPg.clickSubmitButton()
-    // cy.get(':nth-child(2) > .hmcts-primary-navigation__link').click()
-    // cy.wait(5)
-    // cy.get('#cc-jurisdiction').select('Family Divorce')
-    // cy.get('#cc-case-type').select('Divorce case - v115.00')
-    // cy.get('#cc-event').select('Apply for a divorce')
-    // cy.get('.button').click()
+  it('Successfully create basic Adultery case using CCD Solicitor', async () => {
+    exuiLoginPg.openCcdAatUrl()
+    exuiLoginPg.enterCcdSolicitorUserID()
+    exuiLoginPg.enterPassword()
+    exuiLoginPg.clickSubmitButton()
+    cy.get(':nth-child(2) > .hmcts-primary-navigation__link').click()
+    cy.wait(5)
+    cy.get('#cc-jurisdiction').select('Family Divorce')
+    cy.get('#cc-case-type').select('Divorce case - v115.00')
+    cy.get('#cc-event').select('Apply for a divorce')
+    cy.get('.button').click()
   })
 })
