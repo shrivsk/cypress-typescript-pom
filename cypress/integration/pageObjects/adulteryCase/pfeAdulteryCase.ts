@@ -92,7 +92,9 @@ export class pfeAdulteryCase {
     cy.get('#no').click()
     cy.get('.govuk-button').click()
     cy.get('.govuk-button').click()
+    // if demo we need to comment below step
     cy.get(':nth-child(2) > .govuk-button').click()
+     // if demo we need to comment above step
     cy.get('.govuk-heading-l').contains('Check your answers')
     cy.get('#confirmPrayer').click()
     cy.get('#confirmCheckYourAnswers').click()

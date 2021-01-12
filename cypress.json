@@ -1,7 +1,7 @@
 {
   "integrationFolder": "cypress/integration/test",
   "projectId": "kywcy5",
-  "supportFile": false,
+  "supportFile": "cypress/support/commands.ts",
   "viewportHeight": 900,
   "viewportWidth": 1440,
   "firefoxGcInterval": null,

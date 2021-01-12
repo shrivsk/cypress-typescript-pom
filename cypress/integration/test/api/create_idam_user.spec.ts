@@ -1,6 +1,6 @@
 /// <reference types="cypress" />
 // ***********************************************
-const apiCreateUserUrl = `${Cypress.env("apiTestingSupportUrl")}`;
+const apiCreateUserUrl = `${Cypress.env("aatTestingSupportUrl")}`;
 const emailName = `pfe_test_${Cypress._.random(0, 99999)}`;
 let testEmail = `${emailName}@mailinator.com`;
 // ***********************************************
