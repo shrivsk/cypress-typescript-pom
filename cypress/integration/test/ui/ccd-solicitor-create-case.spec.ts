@@ -16,6 +16,7 @@ describe('Successfully create Adultery case using PFE', () => {
     exuiLoginPg.clickSubmitButton()
     cy.get(':nth-child(2) > .hmcts-primary-navigation__link').click()
     // cy.waitUntil(() => cy.get('#cc-jurisdiction').should('contain', 'Family Divorce')); 
+    cy.wait(1000)
     cy.get('#cc-jurisdiction').select('Family Divorce').should('contain','Family Divorce')
     cy.get('#cc-case-type').select('Divorce case - v115.00')
     cy.get('#cc-event').select('Apply for a divorce')
@@ -200,7 +201,12 @@ cy.get('[type="submit"]').click()
 cy.get('[type="submit"]').click()
 cy.get('.heading-h1').should('contain','Case submission')
 // cy.get('.check-your-answers > .heading-h2').should('contain','Check your answers')
+cy.get('.markdown > h1').should('contain','Before you submit')
 cy.get('[type="submit"]').click()
+cy.get('.heading-h1').should('contain','Case submission')
+cy.get('.check-your-answers > .heading-h2').should('contain','Check your answers')
+cy.get('[type="submit"]').click()
+cy.get('[data-ng-transclude=""] > .alert-message').should('contain','has been updated with event: Case submission')
 
 // logout and login session 
 cy.get('.hmcts-header__navigation-link').click()
