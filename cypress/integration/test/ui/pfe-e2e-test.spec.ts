@@ -9,11 +9,11 @@ const exuiLoginPg = new exuiLoginPage()
 // ***********************************************
 describe('Successfully create Adultery case using PFE', () => {
 
-  beforeEach(function(){
-    cy.fixture('pfe_CaseId').then((data)=>{
-      pfeCaseId = data
-    })
-  })
+  // beforeEach(function(){
+  //   cy.fixture('pfe_CaseId').then((data)=>{
+  //     pfeCaseId = data
+  //   })
+  // })
 
   it.only('Successfully create basic Adultery case using PFE', async () => {
     pbasic.basicAdulteryCase()
@@ -21,8 +21,13 @@ describe('Successfully create Adultery case using PFE', () => {
     exuiLoginPg.enterCcdBetaUserID()
     exuiLoginPg.enterPassword()
     exuiLoginPg.clickSubmitButton()
-    cy.log('##########['+pfeCaseId.ccdAatCaseId+']##########')
-    cy.visit(`${Cypress.env("ccdAatUrl")}`+'/case-details/'+pfeCaseId.ccdAatCaseId)
-    cy.reload(true)  
+    cy.fixture('pfe_CaseId').then((data)=>{
+      cy.log('##########['+data.ccdAatCaseId+']##########')
+      cy.visit(`${Cypress.env("ccdAatUrl")}`+'/case-details/'+data.ccdAatCaseId)
+      cy.reload(true) 
+    })
+    // cy.log('##########['+data.ccdAatCaseId+']##########')
+    // cy.visit(`${Cypress.env("ccdAatUrl")}`+'/case-details/'+pfeCaseId.ccdAatCaseId)
+    // cy.reload(true)  
   })
 })

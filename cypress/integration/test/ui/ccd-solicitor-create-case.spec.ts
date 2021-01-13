@@ -7,12 +7,12 @@ import "../../../support/commands"
 let ccdAatCaseId: { ccdAatCaseId: string }
 const exuiLoginPg = new exuiLoginPage()
 // ***********************************************
-describe('Successfully create Adultery case using PFE', () => { 
-  beforeEach(function(){
-    cy.fixture('Soliciter_CaseId').then((data)=>{
-      ccdAatCaseId = data
-    })
-  })
+describe('Successfully create Adultery case using PFE', () => {
+  // beforeEach(function () {
+  //   cy.fixture('Soliciter_CaseId').then((data) => {
+  //     ccdAatCaseId = data
+  //   })
+  // })
   it('Successfully create basic Adultery case using CCD Solicitor', async () => {
     cy.clearCookies()
     cy.getCookies().should('be.empty')
@@ -22,8 +22,8 @@ describe('Successfully create Adultery case using PFE', () => {
     exuiLoginPg.clickSubmitButton()
     cy.get(':nth-child(2) > .hmcts-primary-navigation__link').click()
     // cy.waitUntil(() => cy.get('#cc-jurisdiction').should('contain', 'Family Divorce')); 
-  
-    cy.get('#cc-jurisdiction').select('Family Divorce',{ timeout: 10000 }).should('be.visible');
+
+    cy.get('#cc-jurisdiction').select('Family Divorce', { timeout: 10000 }).should('be.visible');
     // cy.get('#cc-jurisdiction').select('Family Divorce',{ timeout: 10000 }).should('contain', 'Family Divorce')
     // .should('have.value', 'Family Divorce')
     // .and('not.have.class', 'inactive')
@@ -225,10 +225,10 @@ describe('Successfully create Adultery case using PFE', () => {
     exuiLoginPg.enterCcdBetaUserID()
     exuiLoginPg.enterPassword()
     exuiLoginPg.clickSubmitButton()
-    // cy.fixture('Soliciter_CaseId').reload(true)
-    cy.fixture('Soliciter_CaseId').reload(true)
-    cy.log('##########['+ccdAatCaseId.ccdAatCaseId+']##########')
-    cy.visit(`${Cypress.env("ccdAatUrl")}`+'/case-details/'+ccdAatCaseId.ccdAatCaseId)
-    cy.reload(true)  
+    cy.fixture('Soliciter_CaseId').then((data) => {
+      cy.log('##########[' + data.ccdAatCaseId + ']##########')
+      cy.visit(`${Cypress.env("ccdAatUrl")}` + '/case-details/' + data.ccdAatCaseId)
+      cy.reload(true)
+    })
   })
 })
