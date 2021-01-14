@@ -4,7 +4,7 @@ import 'cypress-wait-until';
 import { exuiLoginPage } from '../../pageObjects/exuiPages/loginPage'
 import "../../../support/commands"
 // ***********************************************
-let ccdAatCaseId: { ccdAatCaseId: string }
+// let ccdCaseId: { ccdAatCaseId: string }
 const exuiLoginPg = new exuiLoginPage()
 // ***********************************************
 describe('Successfully create Adultery case using PFE', () => {
@@ -13,38 +13,34 @@ describe('Successfully create Adultery case using PFE', () => {
   //     ccdAatCaseId = data
   //   })
   // })
-  it('Successfully create basic Adultery case using CCD Solicitor', async () => {
+  it.only('Successfully create basic Adultery case using CCD Solicitor', async () => {
     cy.clearCookies()
     cy.getCookies().should('be.empty')
     exuiLoginPg.openCcdAatUrl()
     exuiLoginPg.enterCcdSolicitorUserID()
     exuiLoginPg.enterPassword()
     exuiLoginPg.clickSubmitButton()
+    // case-filter_page
     cy.get(':nth-child(2) > .hmcts-primary-navigation__link').click()
-    // cy.waitUntil(() => cy.get('#cc-jurisdiction').should('contain', 'Family Divorce')); 
-
     cy.get('#cc-jurisdiction').select('Family Divorce', { timeout: 10000 }).should('be.visible');
-    // cy.get('#cc-jurisdiction').select('Family Divorce',{ timeout: 10000 }).should('contain', 'Family Divorce')
-    // .should('have.value', 'Family Divorce')
-    // .and('not.have.class', 'inactive')
     cy.get('#cc-case-type').select('Divorce case - v115.00')
     cy.get('#cc-event').select('Apply for a divorce')
     cy.get('.button').click()
     // solicitorCreateSolAboutTheSolicitor-page
     cy.waitUntil(() => cy.get('#PetitionerSolicitorName').type('PetitionerSolicitorName'))
-    cy.get('#PetitionerSolicitorFirm').type('solFirstName')
-    cy.get('#DerivedPetitionerSolicitorAddr').type('firmdxaddress')
-    cy.get('#D8SolicitorReference').type('solirefno')
+    cy.get('#PetitionerSolicitorFirm').type('PetitionerSolicitorFirm')
+    cy.get('#DerivedPetitionerSolicitorAddr').type('DerivedPetitionerSolicitorAddr')
+    cy.get('#D8SolicitorReference').type('D8SolicitorReference')
     cy.get('#PetitionerSolicitorPhone').type('99999999999')
-    cy.get('#PetitionerSolicitorEmail').type('solicitor@asdfas.com')
+    cy.get('#PetitionerSolicitorEmail').type('Solicitor_test@mailinator.com')
     // option ( yes or no )
     cy.get('#SolicitorAgreeToReceiveEmails-Yes').click()
     // cy.get('#SolicitorAgreeToReceiveEmails-No').click()
     cy.get('[type="submit"]').click()
 
     // solicitorCreateSolAboutThePetitioner-page
-    cy.get('#D8PetitionerFirstName').type('First name')
-    cy.get('#D8PetitionerLastName').type('lastname')
+    cy.get('#D8PetitionerFirstName').type('D8Petitioner FirstName')
+    cy.get('#D8PetitionerLastName').type('D8Petitioner lastname')
     // cy.get('#D8PetitionerNameDifferentToMarriageCert-Yes').click()
     cy.get('#D8PetitionerNameDifferentToMarriageCert-No').click()
     cy.waitUntil(() => cy.get('#D8DivorceWho').select('Wife'))
@@ -61,26 +57,26 @@ describe('Successfully create Adultery case using PFE', () => {
     cy.get('#D8RespondentFirstName').type('respfirst name')
     cy.get('#D8RespondentLastName').type('resplast name')
     cy.get('#D8RespondentNameAsOnMarriageCertificate-Yes').click()
-    cy.get('#D8RespondentFirstName').type('Please explain, if known, how their name has changed since they were married')
+    cy.get('#D8RespondentFirstName').type('D8RespondentFirstName')
     cy.get('#D8RespondentNameAsOnMarriageCertificate-No').click()
     cy.get('#D8InferredRespondentGender').select('Female')
-    cy.get('#D8DerivedRespondentHomeAddress').type('The Respondents home address (Optional)')
-    cy.get('#D8DerivedRespondentCorrespondenceAddr').type('The Respondents service address')
+    cy.get('#D8DerivedRespondentHomeAddress').type('D8DerivedRespondentHomeAddress')
+    cy.get('#D8DerivedRespondentCorrespondenceAddr').type('D8Derived Respondent Correspondence Addr')
     cy.get('[type="submit"]').click()
 
-    // solicitorCreateSolMarriageCertificate-page
+    // solicitorCreateSolMarriageCertificate_Page.ts
     cy.get('#D8MarriageDate-day').type('11')
     cy.get('#D8MarriageDate-month').type('11')
     cy.get('#D8MarriageDate-year').type('2011')
-    cy.get('#D8MarriagePetitionerName').type('Petitioners full name as on marriage certificate')
-    cy.get('#D8MarriageRespondentName').type('Respondents full name as on marriage certificate')
+    cy.get('#D8MarriagePetitionerName').type('D8Marriage PetitionerName')
+    cy.get('#D8MarriageRespondentName').type('D8Marriage RespondentName')
     cy.get('#D8MarriedInUk-Yes').click()
     cy.get('#D8MarriedInUk-No').click()
     cy.get('#D8MarriagePlaceOfMarriage').type('place of Marriage')
     cy.get('#D8CountryName').type('Country of Marriage')
     cy.get('[type="submit"]').click()
 
-    // solicitorCreateSolJurisdiction-page
+    // solicitorCreateSolJurisdiction_Page.ts
     cy.get('#D8JurisdictionConnection-G').click()
     cy.get('#D8JurisdictionConnection-F').click()
     cy.get('#D8JurisdictionConnection-E').click()
@@ -90,18 +86,18 @@ describe('Successfully create Adultery case using PFE', () => {
     cy.get('#D8JurisdictionConnection-A').click()
     cy.get('[type="submit"]').click()
 
-    // solicitorCreateSolReasonForDivorce-page
+    // solicitorCreateSolReasonForDivorce_Page.ts
     cy.get('#D8ReasonForDivorce').select('Adultery')//[5-year separation,2-year separation (with consent),Desertion,Behaviour,Adultery]
     cy.get('[type="submit"]').click()
 
-    // solicitorCreateSolSOCAdultery1-page
+    // solicitorCreateSolSOCAdultery1_Page.ts
     cy.get('#D8ReasonForDivorceAdulteryDetails').type('adultery details')
     cy.get('#D8ReasonForDivorceAdulteryAnyInfo2ndHand-Yes').click()
     cy.get('#D8ReasonForDivorceAdultery2ndHandDetails').type('second hand information details')
     cy.get('#D8ReasonForDivorceAdulteryAnyInfo2ndHand-No').click()
     cy.get('[type="submit"]').click()
 
-    // solicitorCreateSolSOCCoRespondent-page
+    // solicitorCreateSolSOCCoRespondent_Page.ts
     cy.get('#D8ReasonForDivorceAdulteryWishToName-Yes').click()
     cy.get('#D8ReasonForDivorceAdultery3rdPartyFName').type('Co-resp FName')
     cy.get('#D8ReasonForDivorceAdultery3rdPartyLName').type('co-resp Lname')
@@ -109,13 +105,13 @@ describe('Successfully create Adultery case using PFE', () => {
     // cy.get('#D8ReasonForDivorceAdulteryWishToName-No').click()
     cy.get('[type="submit"]').click()
 
-    // solicitorCreateSolExistingCourtCases-page
+    // solicitorCreateSolExistingCourtCases_Page.ts
     cy.get('#D8LegalProceedings-Yes').click()
     cy.get('#D8LegalProceedingsDetails').type('Legal proceeding details')
     // cy.get('#D8LegalProceedings-No').click()
     cy.get('[type="submit"]').click()
 
-    // solicitorCreateSolDividingMoneyAndProperty-pgae
+    // solicitorCreateSolDividingMoneyAndProperty_Pgae.ts
     cy.get('#D8FinancialOrder-Yes').click()
     cy.get('#D8FinancialOrderFor-children').click()
     cy.get('#D8FinancialOrderFor-petitioner').click()
@@ -123,14 +119,14 @@ describe('Successfully create Adultery case using PFE', () => {
     cy.get('[type="submit"]').click()
 
 
-    // solicitorCreateSolApplyToClaimCosts-page
+    // solicitorCreateSolApplyToClaimCosts_Page.ts
     cy.get('#D8DivorceCostsClaim-Yes').click()
     cy.get('#D8DivorceClaimFrom-correspondent').click()
     cy.get('#D8DivorceClaimFrom-respondent').click()
     // cy.get('#D8DivorceCostsClaim-No').click
     cy.get('[type="submit"]').click()
 
-    // solicitorCreateSolUploadDocs-page
+    // solicitorCreateSolUploadDocs_Page.ts
     // cy.get('.panel > .button').click() //( not used)
     // cy.get('#D8DocumentsUploaded_0_DocumentType').select()
     // cy.get('#D8DocumentsUploaded_0_DocumentEmailContent').type('Email Content')
@@ -141,12 +137,12 @@ describe('Successfully create Adultery case using PFE', () => {
     // cy.get('#D8DocumentsUploaded_0_DocumentFileName').type('file name')
     cy.get('[type="submit"]').click()
 
-    // solicitorCreatelangPref-page
+    // solicitorCreatelangPref_Page.ts
     // cy.get('#LanguagePreferenceWelsh-Yes').click()
     cy.get('#LanguagePreferenceWelsh-No').click()
     cy.get('[type="submit"]').click()
 
-    // checkYourAnswers-page
+    // checkYourAnswers_Page.ts
     cy.get('.heading-h1').should('contain', 'Apply for a divorce')
     cy.get('.heading-h2').should('contain', 'Check your answers')
     cy.get('[type="submit"]').click()
@@ -156,10 +152,10 @@ describe('Successfully create Adultery case using PFE', () => {
       // var num = txt.replace(/[^0-9]/g,'');
       expect(ccdCaseId).eq(ccdCaseId)
       cy.log('Case ID -->' + ccdCaseId)
-      cy.wrap(ccdCaseId).as('pfeCaseId')
+      // cy.wrap(ccdCaseId).as('pfeCaseId')
       cy.writeFile('cypress/fixtures/Soliciter_Creted_CaseId.txt', `\n${ccdCaseId}`, { flag: 'a+' })
       cy.writeFile('cypress/fixtures/Soliciter_CaseId.json',
-        { ccdAatCaseId: `${ccdCaseId}` })
+        { ccdCaseId: `${ccdCaseId}` })
     })
 
     // .caseid to get 
@@ -167,11 +163,11 @@ describe('Successfully create Adultery case using PFE', () => {
     // cy.get('.markdown > p').retrive the case id 
     // [1610405827693731: asdfsa vs resp last name]
 
-    // nextStep-SubmitEvent-page
+    // nextStepSubmitNewEvent_Page.ts
     cy.get('#next-step').select('Case submission')
     cy.get('.event-trigger > .button').click()
 
-    // solicitorStatementOfTruthPaySubmitSolStatementOfTruth-page
+    // solicitorStatementOfTruthPaySubmitSolStatementOfTruth_Page.ts
     // cy.get('#SolUrgentCase-Yes').click() or 
     cy.get('#SolUrgentCase-No').click()
     cy.get('#SolServiceMethod-courtService').click()
@@ -189,7 +185,7 @@ describe('Successfully create Adultery case using PFE', () => {
     cy.get('#StatementOfReconciliationComments').type('Additional comments')
     cy.get('[type="submit"]').click()
 
-    // solicitorStatementOfTruthPaySubmitSolPayment-page Cheque (DO NOT USE), Help with fees,Fee account
+    // solicitorStatementOfTruthPaySubmitSolPayment_Page.ts Cheque (DO NOT USE), Help with fees,Fee account
     // cy.get('#SolPaymentHowToPay').select('Help with fees')
     // cy.get('[type="submit"]').click()
     // cy.get('#D8HelpWithFeesReferenceNumber').type('HWF-111-111')
@@ -221,14 +217,15 @@ describe('Successfully create Adultery case using PFE', () => {
     cy.get('.hmcts-header__navigation-link').click()
     cy.clearCookies()
     cy.getCookies().should('be.empty')
-    exuiLoginPg.openCcdAatUrl()
-    exuiLoginPg.enterCcdBetaUserID()
-    exuiLoginPg.enterPassword()
-    exuiLoginPg.clickSubmitButton()
-    cy.fixture('Soliciter_CaseId').then((data) => {
-      cy.log('##########[' + data.ccdAatCaseId + ']##########')
-      cy.visit(`${Cypress.env("ccdAatUrl")}` + '/case-details/' + data.ccdAatCaseId)
-      cy.reload(true)
-    })
+    // exuiLoginPg.openCcdAatUrl()
+    // exuiLoginPg.enterCcdBetaUserID()
+    // exuiLoginPg.enterPassword()
+    // exuiLoginPg.clickSubmitButton()
+    // cy.fixture('Soliciter_CaseId').then((data) => {
+    //   cy.log('##########[' + data.ccdCaseId + ']##########')
+    //   cy.visit(`${Cypress.env("ccdAatUrl")}` + '/case-details/' + data.ccdCaseId)
+    //   cy.reload(true)
+    // })
+  
   })
 })

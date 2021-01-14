@@ -3,7 +3,7 @@
 .idea
 node_modules
 tsc
-cypress/report
+cypress/reports
 cypress/screenshots
 cypress/videos
 

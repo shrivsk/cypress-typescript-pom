@@ -5,14 +5,14 @@ var ccdCaseId: string
 // ***********************************************
 export class pfeAdulteryCase {
 
-  pfeLoginPg: pfeLoginPage
-  constructor() {
-    this.pfeLoginPg = new pfeLoginPage()
-  }
+  // pfeLoginPg: pfeLoginPage
+  // constructor() {
+  //   this.pfeLoginPg = new pfeLoginPage()
+  // }
   
   basicAdulteryCase() {
-    const lP = this.pfeLoginPg
-    lP.pfeAatlogin()
+    // const lP = this.pfeLoginPg
+    // lP.pfeAatlogin()
     cy.get('#languagePreferenceWelsh_No').click()
     cy.get('.govuk-button').click()
     cy.get('#screenHasMarriageBroken_Yes').click()
