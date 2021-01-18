@@ -27,7 +27,8 @@ describe('Successfully create Adultery case using PFE', () => {
     cy.get('#cc-event').select('Apply for a divorce')
     cy.get('.button').click()
     // solicitorCreateSolAboutTheSolicitor-page
-    cy.waitUntil(() => cy.get('#PetitionerSolicitorName').type('PetitionerSolicitorName'))
+    // cy.waitUntil(() => cy.get('#PetitionerSolicitorName').type('PetitionerSolicitorName'))
+    cy.get('#PetitionerSolicitorName').type('PetitionerSolicitorName',{ timeout: 10000 }).should('be.visible'); 
     cy.get('#PetitionerSolicitorFirm').type('PetitionerSolicitorFirm')
     cy.get('#DerivedPetitionerSolicitorAddr').type('DerivedPetitionerSolicitorAddr')
     cy.get('#D8SolicitorReference').type('D8SolicitorReference')
