@@ -1,12 +1,12 @@
 /// <reference types="cypress" />
 // ***********************************************
-import { pfeAdulteryCase } from '../../pageObjects/adulteryCase/pfeAdulteryCase'
+import { demoPfeAdulteryCase } from '../../pageObjects/adulteryCase/demoPfeAdulteryCase'
 import { exuiLoginPage } from '../../pageObjects/exuiPages/loginPage'
 import { pfeLoginPage } from '../../pageObjects/pfepages/login-Page'
 // ***********************************************
 let pfeCaseId: { ccdAatCaseId: string }
 const login = new pfeLoginPage()
-const pbasic = new pfeAdulteryCase()
+const pbasic = new demoPfeAdulteryCase()
 const exuiLoginPg = new exuiLoginPage()
 // ***********************************************
 describe('Successfully create Adultery case using PFE', () => {

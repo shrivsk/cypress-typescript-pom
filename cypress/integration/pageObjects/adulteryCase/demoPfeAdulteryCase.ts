@@ -3,7 +3,7 @@
 import { pfeLoginPage } from '../pfepages/login-Page'
 var ccdCaseId: string
 // ***********************************************
-export class pfeAdulteryCase {
+export class demoPfeAdulteryCase {
 
   // pfeLoginPg: pfeLoginPage
   // constructor() {
@@ -93,7 +93,7 @@ export class pfeAdulteryCase {
     cy.get('.govuk-button').click()
     cy.get('.govuk-button').click()
     // if demo we need to comment below step
-    cy.get(':nth-child(2) > .govuk-button').click()
+    // cy.get(':nth-child(2) > .govuk-button').click()
      // if demo we need to comment above step
     cy.get('.govuk-heading-l').contains('Check your answers')
     cy.get('#confirmPrayer').click()
@@ -118,4 +118,4 @@ export class pfeAdulteryCase {
   const sum=cy.get('@pfeCaseId')
   return sum
 }}
-export default pfeAdulteryCase
+export default demoPfeAdulteryCase

@@ -22,13 +22,13 @@ describe('Successfully create Adultery case using PFE', () => {
     exuiLoginPg.clickSubmitButton()
     // case-filter_page
     cy.get(':nth-child(2) > .hmcts-primary-navigation__link').click()
-    cy.get('#cc-jurisdiction').select('Family Divorce', { timeout: 10000 }).should('be.visible');
+    cy.get('#cc-jurisdiction').select('Family Divorce', { timeout: 30000 }).should('be.visible');
     cy.get('#cc-case-type').select('Divorce case - v115.00')
     cy.get('#cc-event').select('Apply for a divorce')
     cy.get('.button').click()
     // solicitorCreateSolAboutTheSolicitor-page
     // cy.waitUntil(() => cy.get('#PetitionerSolicitorName').type('PetitionerSolicitorName'))
-    cy.get('#PetitionerSolicitorName').type('PetitionerSolicitorName',{ timeout: 10000 }).should('be.visible'); 
+    cy.get('#PetitionerSolicitorName').type('PetitionerSolicitorName',{ timeout: 30000 }).should('be.visible'); 
     cy.get('#PetitionerSolicitorFirm').type('PetitionerSolicitorFirm')
     cy.get('#DerivedPetitionerSolicitorAddr').type('DerivedPetitionerSolicitorAddr')
     cy.get('#D8SolicitorReference').type('D8SolicitorReference')
@@ -218,15 +218,15 @@ describe('Successfully create Adultery case using PFE', () => {
     cy.get('.hmcts-header__navigation-link').click()
     cy.clearCookies()
     cy.getCookies().should('be.empty')
-    // exuiLoginPg.openCcdAatUrl()
-    // exuiLoginPg.enterCcdBetaUserID()
-    // exuiLoginPg.enterPassword()
-    // exuiLoginPg.clickSubmitButton()
-    // cy.fixture('Soliciter_CaseId').then((data) => {
-    //   cy.log('##########[' + data.ccdCaseId + ']##########')
-    //   cy.visit(`${Cypress.env("ccdAatUrl")}` + '/case-details/' + data.ccdCaseId)
-    //   cy.reload(true)
-    // })
+    exuiLoginPg.openCcdAatUrl()
+    exuiLoginPg.enterCcdBetaUserID()
+    exuiLoginPg.enterPassword()
+    exuiLoginPg.clickSubmitButton()
+    cy.fixture('Soliciter_CaseId').then((data) => {
+      cy.log('##########[' + data.ccdCaseId + ']##########')
+      cy.visit(`${Cypress.env("ccdAatUrl")}` + '/case-details/' + data.ccdCaseId)
+      cy.reload(true)
+    })
   
   })
 })

@@ -10,12 +10,12 @@ export class pfeLoginPage {
 
     createAatIdamUser() {
         cy.createIdamUser(`${testEmail}`, `${Cypress.env("aatTestingSupportUrl")}`)
-        cy.writeFile('cypress/fixtures/pfe_Creted_CaseId.txt',`\nCCD-AAT-EmailID => ${testEmail}`, { flag: 'a+' })
+        cy.writeFile('cypress/fixtures/pfe_Creted_CaseId.txt',`\nPFE-AAT-EmailID => ${testEmail}`, { flag: 'a+' })
     }
 
     createDemoIdamUser() {
         cy.createIdamUser(`${testEmail}`, `${Cypress.env("demoTestingSupportUrl")}`)
-        cy.writeFile('cypress/fixtures/pfe_Creted_CaseId.txt',`\n'CCD-Demo-CaseId:-'+${testEmail}`, { flag: 'a+' })
+        cy.writeFile('cypress/fixtures/pfe_Creted_CaseId.txt',`\n'PFE-Demo-CaseId:-'+${testEmail}`, { flag: 'a+' })
     }
 
     openPfeAatUrl() {
