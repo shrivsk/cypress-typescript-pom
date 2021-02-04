@@ -2,6 +2,7 @@
   "integrationFolder": "cypress/integration/test",
   "projectId": "kywcy5",
   "supportFile": "cypress/support/commands.ts",
+  "defaultCommandTimeout":10000,
   "viewportHeight": 900,
   "viewportWidth": 1440,
   "firefoxGcInterval": null,

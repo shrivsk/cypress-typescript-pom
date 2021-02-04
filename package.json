@@ -11,7 +11,8 @@
   },
   "scripts": {
     "cypress:open": "cypress open",
-    "cypress:run": "cypress run",
+  
+    "cy:run": "cypress run --headless",
     "clean:reports": "rm -R -f cypress/reports && mkdir cypress/reports && mkdir cypress/reports/mochareports",
     "pretest": "npm run clean:reports",
     "scripts": "cypress run",
