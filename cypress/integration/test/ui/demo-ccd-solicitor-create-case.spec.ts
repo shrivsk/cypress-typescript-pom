@@ -24,8 +24,9 @@ describe('Successfully create Adultery case using PFE', () => {
     cy.get(':nth-child(2) > .hmcts-primary-navigation__link').click()
     cy.get('#cc-jurisdiction').select('Family Divorce', { timeout: 10000 }).should('be.visible');
     
-    cy.get('#cc-case-type').select('Divorce case - v115.00')
-    cy.get('#cc-event').select('Apply for a divorce')
+    cy.get('#cc-case-type').select('Family Divorce - v104-26.1')
+    cy.get('#cc-event').select('Divorce case - v115.00')
+    
     cy.get('.button').click()
     // solicitorCreateSolAboutTheSolicitor-page
     cy.waitUntil(() => cy.get('#PetitionerSolicitorName').type('PetitionerSolicitorName'))
