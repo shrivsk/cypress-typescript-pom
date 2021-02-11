@@ -28,8 +28,9 @@ describe('Successfully create Adultery case using PFE', () => {
     cy.get('.button').click()
     // solicitorCreateSolAboutTheSolicitor-page
     // cy.waitUntil(() => cy.get('#PetitionerSolicitorName').type('PetitionerSolicitorName'))
+    // cy.get('#PetitionerSolicitorName',{ timeout: 50000 }).reload()
     cy.get('#PetitionerSolicitorName',{ timeout: 50000 }).should('be.visible').type('PetitionerSolicitorName'); 
-    cy.get('#PetitionerSolicitorFirm').type('PetitionerSolicitorFirm')
+    // cy.get('#PetitionerSolicitorFirm').type('PetitionerSolicitorFirm')
     cy.get('#DerivedPetitionerSolicitorAddr').type('DerivedPetitionerSolicitorAddr')
     cy.get('#D8SolicitorReference').type('D8SolicitorReference')
     cy.get('#PetitionerSolicitorPhone').type('99999999999')
@@ -37,6 +38,9 @@ describe('Successfully create Adultery case using PFE', () => {
     // option ( yes or no )
     cy.get('#SolicitorAgreeToReceiveEmails-Yes').click()
     // cy.get('#SolicitorAgreeToReceiveEmails-No').click()
+    cy.get('#search-org-text',{ timeout: 50000 }).type(`${Cypress.env('DivPetitionerSolicitorFirm')}`)
+    cy.get('.td-select > a').click()
+
     cy.get('[type="submit"]').click()
 
     // solicitorCreateSolAboutThePetitioner-page
@@ -61,10 +65,24 @@ describe('Successfully create Adultery case using PFE', () => {
     cy.get('#D8RespondentFirstName').type('D8RespondentFirstName')
     cy.get('#D8RespondentNameAsOnMarriageCertificate-No').click()
     cy.get('#D8InferredRespondentGender').select('Female')
-    cy.get('#D8DerivedRespondentHomeAddress').type('D8DerivedRespondentHomeAddress')
-    cy.get('#D8DerivedRespondentCorrespondenceAddr').type('D8Derived Respondent Correspondence Addr')
+    // cy.get('#D8DerivedRespondentHomeAddress').type('D8DerivedRespondentHomeAddress')
+    // cy.get('#D8DerivedRespondentCorrespondenceAddr').type('D8Derived Respondent Correspondence Addr')
     cy.get('[type="submit"]').click()
-
+    /* +++++++++++++++++++++++++++++++++++++++++++++ */
+    cy.contains('Respondent service details - Apply for a divorce',{ timeout: 50000 })
+    cy.get('#respondentSolicitorRepresented-Yes').click()
+    cy.get('#D8RespondentSolicitorName').type('Respondent solicitor name')
+    cy.get('#respondentSolicitorReference').type('Respondent solicitor reference')
+    cy.get('#D8RespondentSolicitorEmail').type('respondentSolicitor@mailinator.com')
+    cy.get('#D8RespondentSolicitorPhone').type('09999999999')
+    cy.get('#D8DerivedRespondentSolicitorAddr').type('Respondent solicitor firm/ DX address')
+    cy.get('#RespSolDigital-Yes').click()
+    cy.contains(`Respondent solicitor's firm`)
+    cy.get('.govuk-fieldset__legend > .heading-h2').should('contain','Search for an organisation')
+    cy.get('#search-org-text').type(`${Cypress.env('DivRespondentSolicitorFirm')}`)
+    cy.get('.td-select > a').click()
+    cy.get('[type="submit"]').click()
+/* +++++++++++++++++++++++++++++++++++++++++++++ */
     // solicitorCreateSolMarriageCertificate_Page.ts
     cy.get('#D8MarriageDate-day').type('11')
     cy.get('#D8MarriageDate-month').type('11')
@@ -187,31 +205,33 @@ describe('Successfully create Adultery case using PFE', () => {
     cy.get('[type="submit"]').click()
 
     // solicitorStatementOfTruthPaySubmitSolPayment_Page.ts Cheque (DO NOT USE), Help with fees,Fee account
-    // cy.get('#SolPaymentHowToPay').select('Help with fees')
-    // cy.get('[type="submit"]').click()
-    // cy.get('#D8HelpWithFeesReferenceNumber').type('HWF-111-111')
-    // cy.get('[type="submit"]').click()
-    // cy.get('[type="submit"]').click()
-    // cy.get('[type="submit"]').click()
-    // cy.get('.heading-h1').should('eq','Case submission')
-    // cy.get('.check-your-answers > .heading-h2').should('eq','Check your answers')
-    // cy.get('[type="submit"]').click()
+    cy.get('#SolPaymentHowToPay').select('Help with fees')
+    cy.get('[type="submit"]').click()
+    cy.get('#D8HelpWithFeesReferenceNumber').type('HWF-111-111')
+    cy.get('[type="submit"]').click()
+    cy.get('[type="submit"]').click()
+    cy.get('[type="submit"]').click()
+    cy.get('.heading-h1').should('contain','Case submission')
+    cy.get('.check-your-answers > .heading-h2').should('contain','Check your answers')
+    cy.get('[type="submit"]').click()
 
     // payment done using Fee account 
-    cy.get('#SolPaymentHowToPay').select('Fee account')
+/*     cy.get('#SolPaymentHowToPay').select('Fee account')
     cy.get('[type="submit"]').click()
-    cy.get('#PbaNumbers').select('PBA0077051')
+    // cy.get('#PbaNumbers').select('PBA0077051')
+    cy.get('#PbaNumbers').select('PBA0088063')
     cy.get('#FeeAccountReference').type('Active PBA')
     cy.get('[type="submit"]').click()
     cy.get('[type="submit"]').click()
     cy.get('[type="submit"]').click()
-    cy.get('.heading-h1').should('contain', 'Case submission')
+    cy.get('.heading-h1').should('contain', 'Case submission') 
     // cy.get('.check-your-answers > .heading-h2').should('contain','Check your answers')
     cy.get('.markdown > h1').should('contain', 'Before you submit')
     cy.get('[type="submit"]').click()
     cy.get('.heading-h1').should('contain', 'Case submission')
     cy.get('.check-your-answers > .heading-h2').should('contain', 'Check your answers')
-    cy.get('[type="submit"]').click()
+    cy.get('[type="submit"]').click()*/
+
     cy.get('[data-ng-transclude=""] > .alert-message').should('contain', 'has been updated with event: Case submission')
 
     // logout and login session 
