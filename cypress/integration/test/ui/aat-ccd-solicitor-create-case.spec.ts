@@ -2,10 +2,12 @@
 // ***********************************************
 import 'cypress-wait-until';
 import { exuiLoginPage } from '../../pageObjects/exuiPages/loginPage'
+import caseFilter_Page from '../../pageObjects/exuiPages/exuiSolicitorPages/caseFilter_Page'
 import "../../../support/commands"
 // ***********************************************
 // let ccdCaseId: { ccdAatCaseId: string }
 const exuiLoginPg = new exuiLoginPage()
+const caseFilter = new caseFilter_Page()
 // ***********************************************
 describe('Successfully create Adultery case using PFE', () => {
   // beforeEach(function () {
@@ -16,16 +18,15 @@ describe('Successfully create Adultery case using PFE', () => {
   it.only('Successfully create basic Adultery case using CCD Solicitor', async () => {
     cy.clearCookies()
     cy.getCookies().should('be.empty')
-    exuiLoginPg.openCcdAatUrl()
-    exuiLoginPg.enterCcdSolicitorUserID()
-    exuiLoginPg.enterPassword()
-    exuiLoginPg.clickSubmitButton()
+    // exuiLoginPg.openCcdAatUrl()
+    // exuiLoginPg.enterCcdSolicitorUserID()
+    // exuiLoginPg.enterPassword()
+    // exuiLoginPg.clickSubmitButton()
+    exuiLoginPg.loginToAATwithOrgPetSolicitor('divorce_as_petitioner_solicitor_01@mailinator.com')
     // case-filter_page
-    cy.get(':nth-child(2) > .hmcts-primary-navigation__link',{timeout: 50000}).should('be.visible').click()
-    cy.get('#cc-jurisdiction').select('Family Divorce', { timeout: 30000 }).should('be.visible');
-    cy.get('#cc-case-type').select('Divorce case - v115.00')
-    cy.get('#cc-event').select('Apply for a divorce')
-    cy.get('.button').click()
+    caseFilter.caseFilterPageForAAT()
+
+    
     // solicitorCreateSolAboutTheSolicitor-page
     // cy.waitUntil(() => cy.get('#PetitionerSolicitorName').type('PetitionerSolicitorName'))
     // cy.get('#PetitionerSolicitorName',{ timeout: 50000 }).reload()
@@ -104,11 +105,11 @@ describe('Successfully create Adultery case using PFE', () => {
     cy.get('#D8JurisdictionConnection-B').click()
     cy.get('#D8JurisdictionConnection-A').click()
     cy.get('[type="submit"]').click()
-
+    cy.pause()
     // solicitorCreateSolReasonForDivorce_Page.ts
     cy.get('#D8ReasonForDivorce').select('Adultery')//[5-year separation,2-year separation (with consent),Desertion,Behaviour,Adultery]
     cy.get('[type="submit"]').click()
-
+    // cy.pause()
     // solicitorCreateSolSOCAdultery1_Page.ts
     cy.get('#D8ReasonForDivorceAdulteryDetails').type('adultery details')
     cy.get('#D8ReasonForDivorceAdulteryAnyInfo2ndHand-Yes').click()
@@ -165,8 +166,7 @@ describe('Successfully create Adultery case using PFE', () => {
     cy.get('.heading-h1').should('contain', 'Apply for a divorce')
     cy.get('.heading-h2').should('contain', 'Check your answers')
     cy.get('[type="submit"]').click()
-
-    cy.get('[data-ng-transclude=""] > .alert-message').then(function ($caseid) {
+    cy.get('.alert-message').then(function ($caseid) {
       let ccdCaseId = $caseid.text().replace(/[^0-9]/g, '')
       // var num = txt.replace(/[^0-9]/g,'');
       expect(ccdCaseId).eq(ccdCaseId)

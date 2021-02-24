@@ -30,10 +30,10 @@ export class exuiLoginPage {
         return this
     }
 
-    enterCcdSolicitorUserID() {
+    enterCcdSolicitorUserID(value) {
         const emailAdress = cy.get('#username')
         emailAdress.clear()
-        emailAdress.type(`${Cypress.env('ccdSolicitorEmail')}`)
+        emailAdress.type(value)
         cy.log(`"userEmail :--> (${Cypress.env('ccdSueruserEmail')})"`);
         // cy.allure().parameter(`"userEmail :--> ("${testEmail}")"`,"")
         return this
@@ -63,6 +63,20 @@ export class exuiLoginPage {
     sumit(){
         const sumit="baseUrl"
         return sumit
+    }
+    loginToAATwithOrgPetSolicitor(value){
+        this.openCcdAatUrl()
+        this.enterCcdSolicitorUserID(value)
+        this.enterPassword()
+        this.clickSubmitButton()
+        return this
+    }
+    loginToDEMOwithOrgPetSolicitor(value){
+        this.openCcdDemoUrl()
+        this.enterCcdSolicitorUserID(value)
+        this.enterPassword()
+        this.clickSubmitButton()
+        return this
     }
 }
 export default exuiLoginPage

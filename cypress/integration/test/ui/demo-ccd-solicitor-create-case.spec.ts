@@ -2,10 +2,12 @@
 // ***********************************************
 import 'cypress-wait-until';
 import { exuiLoginPage } from '../../pageObjects/exuiPages/loginPage'
+import caseFilter_Page from '../../pageObjects/exuiPages/exuiSolicitorPages/caseFilter_Page'
 import "../../../support/commands"
 // ***********************************************
 // let ccdCaseId: { ccdAatCaseId: string }
 const exuiLoginPg = new exuiLoginPage()
+const caseFilter = new caseFilter_Page()
 // ***********************************************
 describe('Successfully create Adultery case using PFE', () => {
   // beforeEach(function () {
@@ -16,18 +18,13 @@ describe('Successfully create Adultery case using PFE', () => {
   it('Successfully create basic Adultery case using CCD Solicitor', async () => {
     cy.clearCookies()
     cy.getCookies().should('be.empty')
-    exuiLoginPg.openCcdDemoUrl()
-    exuiLoginPg.enterCcdSolicitorUserID()
-    exuiLoginPg.enterPassword()
-    exuiLoginPg.clickSubmitButton()
+    // exuiLoginPg.openCcdDemoUrl()
+    // exuiLoginPg.enterCcdSolicitorUserID('')
+    // exuiLoginPg.enterPassword()
+    // exuiLoginPg.clickSubmitButton()
+    exuiLoginPg.loginToDEMOwithOrgPetSolicitor('divorce_as_petitioner_solicitor_demo_01@mailinator.com')
     // case-filter_page
-    cy.get(':nth-child(2) > .hmcts-primary-navigation__link').click()
-    cy.get('#cc-jurisdiction').select('Family Divorce', { timeout: 10000 }).should('be.visible');
-    
-    cy.get('#cc-case-type').select('Family Divorce - v104-26.1')
-    cy.get('#cc-event').select('Divorce case - v115.00')
-    
-    cy.get('.button').click()
+    caseFilter.caseFilterPageForDemo()
     // solicitorCreateSolAboutTheSolicitor-page
     cy.waitUntil(() => cy.get('#PetitionerSolicitorName').type('PetitionerSolicitorName'))
     cy.get('#PetitionerSolicitorFirm').type('solFirstName')
