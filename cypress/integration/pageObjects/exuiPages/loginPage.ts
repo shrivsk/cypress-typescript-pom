@@ -11,7 +11,32 @@ export class exuiLoginPage {
     }
     openCcdDemoUrl() {
         cy.visit(`${Cypress.env('ccdDemoUrl')}`)
-    }    
+    }  
+
+    openCcdIthcUrl() {
+        cy.visit(`${Cypress.env('ccdIthcUrl')}`)
+    } 
+    
+    openCcdPreftestUrl() {
+        cy.visit(`${Cypress.env('ccdPreftestUrl')}`)
+    } 
+
+    openCcdCustomUrl(url) {
+        cy.visit(url)
+    } 
+
+    openPfeIthcUrl() {
+        cy.visit(`${Cypress.env('pfeIthcUrl')}`)
+    }  
+
+    openPfeAatUrl() {
+        cy.visit(`${Cypress.env('pfeAatUrl')}`)
+    }  
+
+    openPfeDemoUrl() {
+        cy.visit(`${Cypress.env('pfeDemoUrl')}`)
+    }  
+
     enterCcdBetaUserID() {
         const emailAdress = cy.get('#username')
         emailAdress.clear()
@@ -78,5 +103,14 @@ export class exuiLoginPage {
         this.clickSubmitButton()
         return this
     }
+
+    loginToCustomURLandPasswordwithOrgPetSolicitor(url, email){
+        this.openCcdCustomUrl(url)
+        this.enterCcdSolicitorUserID(email)
+        this.enterPassword()
+        this.clickSubmitButton()
+        return this
+    }
+    
 }
 export default exuiLoginPage
