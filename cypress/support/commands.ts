@@ -17,5 +17,5 @@ Cypress.Commands.add("createIdamUser", (testEmail, apiCreateUserUrl) => {
       expect(response.status).to.eq(201);
     });
     cy.log(`"After AIP POST request email :--> ("${testEmail}")"`);
-    return cy.log(`${testEmail}`)
+    return cy.log(`${testEmail}`);
     });

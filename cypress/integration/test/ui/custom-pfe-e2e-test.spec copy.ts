@@ -18,7 +18,7 @@ describe('Successfully create Adultery case using PFE', () => {
   // })
 
   it('Successfully create basic Adultery case using PFE', async () => {
-    login.pfeDemologin()
+    login.pfePerftestlogin()
     pbasic.basicAdulteryCase()
     exuiLoginPg.openCcdDemoUrl()
     exuiLoginPg.enterCcdBetaUserID()
@@ -30,4 +30,6 @@ describe('Successfully create Adultery case using PFE', () => {
       cy.reload(true)
     })
   })
+
+  
 })

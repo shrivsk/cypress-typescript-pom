@@ -5,15 +5,15 @@ var ccdCaseId: string
 // ***********************************************
 export class pfeAdulteryCostPayCard {
 
-  pfeLoginPg: pfeLoginPage
+  // pfeLoginPg: pfeLoginPage
 
-  constructor() {
-    this.pfeLoginPg = new pfeLoginPage()
-  }
+  // constructor() {
+  //   this.pfeLoginPg = new pfeLoginPage()
+  // }
   
   adulteryCaseCostPaybyCard() {
-    const lP = this.pfeLoginPg
-    lP.pfeAatlogin()
+    // const lP = this.pfeLoginPg
+    // lP.pfeAatlogin()
     cy.get('#languagePreferenceWelsh_No').click()
     cy.get('.govuk-button').click()
     cy.get('#screenHasMarriageBroken_Yes').click()
@@ -24,11 +24,11 @@ export class pfeAdulteryCostPayCard {
     cy.get('.govuk-button').click()
     cy.get('.govuk-button').click()
     cy.get('.govuk-heading-l').contains('Do you want help paying your fee?')
-    cy.get('#helpWithFeesNeedHelp_Yes').click()
+    cy.get('#helpWithFeesNeedHelp_No').click()
     cy.get('.govuk-button').click()
-    cy.get('#helpWithFeesAppliedForFees_Yes').click()
-    cy.get('#helpWithFeesReferenceNumber').type('HWF-111-111')
-    cy.get('.govuk-button').click()
+    // cy.get('#helpWithFeesAppliedForFees_Yes').click()
+    // cy.get('#helpWithFeesReferenceNumber').type('HWF-111-111')
+    // cy.get('.govuk-button').click()
     cy.get('#divorceWho_wife').click()
     cy.get('.govuk-button').click()
     cy.get('#marriageDateDay').type("01")
@@ -93,10 +93,21 @@ export class pfeAdulteryCostPayCard {
     cy.get('#no').click()
     cy.get('.govuk-button').click()
     cy.get('.govuk-button').click()
-    cy.get(':nth-child(2) > .govuk-button').click()
+    // cy.get('.govuk-button').click()
+    // cy.get(':nth-child(2) > .govuk-button').click()
     cy.get('.govuk-heading-l').contains('Check your answers')
     cy.get('#confirmPrayer').click()
     cy.get('#confirmCheckYourAnswers').click()
+    
+    // payment using Card page start
+    cy.get('.govuk-heading-l').contains('You need to pay the fee')
+    cy.get('.govuk-button').click()
+    cy.get('.govuk-heading-l').contains('Payment')
+    cy.get('#form > :nth-child(2)').contains('The application fee is £550. The payment can be made by anyone with a valid debit or credit card.')
+    cy.get('.govuk-button').click()
+
+    // payment using Card page end 
+
     cy.get('.govuk-panel__title')
     .then(function($AppComp){
       const AppComptxt=$AppComp.text()

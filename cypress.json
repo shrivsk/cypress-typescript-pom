@@ -2,6 +2,7 @@
   "integrationFolder": "cypress/integration/test",
   "projectId": "kywcy5",
   "supportFile": "cypress/support/commands.ts",
+  "screenshotOnRunFailure": true,
   "defaultCommandTimeout":10000,
   "viewportHeight": 900,
   "viewportWidth": 1440,
@@ -11,15 +12,21 @@
     "openMode": 1
   },
   "env": {
+
     "aatTestingSupportUrl": "https://idam-api.aat.platform.hmcts.net/testing-support/accounts",
     "demoTestingSupportUrl": "https://idam-api.demo.platform.hmcts.net/testing-support/accounts",
+    "perftestTestingSupportUrl": " https://idam-api.perftest.platform.hmcts.net/testing-support/accounts",
+
+       
     "pfeAatUrl": "https://petitioner-frontend-aks.aat.platform.hmcts.net/index",
     "pfeDemoUrl": "https://petitioner-frontend-aks.demo.platform.hmcts.net/index",
     "pfeIthcUrl": "https://petitioner-frontend-aks.ithc.platform.hmcts.net/index",
+    "pfePerftestUrl": "https://petitioner-frontend-aks.perftest.platform.hmcts.net/index",
     "ccdAatUrl": "https://manage-case.aat.platform.hmcts.net",
     "ccdDemoUrl": "https://manage-case.demo.platform.hmcts.net",
     "ccdIthcUrl": "https://manage-case.ithc.platform.hmcts.net",
     "ccdPreftestUrl": "https://manage-case.preftest.platform.hmcts.net",
+    
     "ccdbetaEmail": "divorce_as_caseworker_beta@mailinator.com",
     "ccdSolicitorEmail": "divorce_as_petitioner_solicitor_01@mailinator.com",
     "DivPetitionerSolicitorFirm":"DivPetitionerSolicitorFirm",

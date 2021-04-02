@@ -18,11 +18,20 @@ export class pfeLoginPage {
         cy.writeFile('cypress/fixtures/pfe_Creted_CaseId.txt',`\n'PFE-Demo-CaseId:-'+${testEmail}`, { flag: 'a+' })
     }
 
+    createPerftestIdamUser() {
+        cy.createIdamUser(`${testEmail}`, `${Cypress.env("perftestTestingSupportUrl")}`)
+        cy.writeFile('cypress/fixtures/pfe_Creted_CaseId.txt',`\n'PFE-Preftest-CaseId:-'+${testEmail}`, { flag: 'a+' })
+    }
+
     openPfeAatUrl() {
         cy.visit(`${Cypress.env('pfeAatUrl')}`)
     }
     openPfeDemoUrl(){
         cy.visit(`${Cypress.env('pfeDemoUrl')}`) 
+    }
+
+    openPfePerftestUrl(){
+        cy.visit(`${Cypress.env('pfePerftestUrl')}`) 
     }
 
     enterUserID() {
@@ -38,6 +47,13 @@ export class pfeLoginPage {
         const password = cy.get('#password')
         password.clear()
         password.type(`${Cypress.env('password')}`)
+        return this
+    }
+
+    enterPerftestPassword() {
+        const password = cy.get('#password')
+        password.clear()
+        password.type('Pass19word')
         return this
     }
 
@@ -60,5 +76,13 @@ export class pfeLoginPage {
         this.enterPassword()
         this.clickSubmitButton()
     }
-}
-export default pfeLoginPage
+
+    pfePerftestlogin(){
+        this.createPerftestIdamUser()
+        this.openPfePerftestUrl()
+        this.enterUserID()
+        this.enterPerftestPassword()
+        this.clickSubmitButton()
+    }
+    
+} export default pfeLoginPage

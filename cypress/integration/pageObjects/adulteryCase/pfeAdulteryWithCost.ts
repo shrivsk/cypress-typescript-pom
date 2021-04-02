@@ -10,7 +10,7 @@ export class pfeAdulteryWithCost {
   //   this.pfeLoginPg = new pfeLoginPage()
   // }
 
-  basicAdulteryCase() {
+  basicAdulteryCaseWithCost() {
     // const lP = this.pfeLoginPg
     // lP.pfeAatlogin()
     cy.get('#languagePreferenceWelsh_No').click()

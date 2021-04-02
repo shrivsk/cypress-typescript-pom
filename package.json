@@ -11,7 +11,6 @@
   },
   "scripts": {
     "cypress:open": "cypress open",
-  
     "cy:run": "cypress run --headless",
     "clean:reports": "rm -R -f cypress/reports && mkdir cypress/reports && mkdir cypress/reports/mochareports",
     "pretest": "npm run clean:reports",
@@ -31,7 +30,7 @@
     "@shelex/cypress-allure-plugin": "^1.10.0",
     "@types/node": "^14.14.16",
     "allure-commandline": "^2.13.8",
-    "cypress": "^6.2.1",
+    "cypress": "^6.7.1",
     "cypress-multi-reporters": "^1.4.0",
     "cypress-repeat": "^2.2.1",
     "cypress-wait-until": "^1.7.1",

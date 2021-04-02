@@ -1,23 +1,20 @@
 /// <reference types="cypress" />
 // ***********************************************
-import { pfeLoginPage } from '../pfepages/loginPage'
+import { pfeLoginPage } from '../pfepages/login-Page'
+const emailName = `pfeRespSol_${Cypress._.random(0, 999999)}`;
+let pfeRespSolemail =`${emailName}@mailinator.com`;
 var ccdCaseId: string
 // ***********************************************
-export class pfeAdulteryCostPayCard {
+export class pfeAdulteryWithCostWithRespSol {
 
-  pfeLoginPg: pfeLoginPage
+  // pfeLoginPg: pfeLoginPage
+  // constructor() {
+  //   this.pfeLoginPg = new pfeLoginPage()
+  // }
 
-  constructor() {
-    this.pfeLoginPg = new pfeLoginPage()
-  }
-  
-  adulteryCaseCostPaybyCard() {
-    const lP = this.pfeLoginPg
-    lP.createIdamUser()
-    lP.openPfeAatUrl()
-    lP.enterUserID()
-    lP.enterPassword()
-    lP.clickSubmitButton()
+  respSolWithCostandAdul() {
+    // const lP = this.pfeLoginPg
+    // lP.pfeAatlogin()
     cy.get('#languagePreferenceWelsh_No').click()
     cy.get('.govuk-button').click()
     cy.get('#screenHasMarriageBroken_Yes').click()
@@ -67,8 +64,20 @@ export class pfeAdulteryCostPayCard {
     cy.get('.govuk-button').click()
     cy.get('#livingArrangementsLiveTogether_Yes').click()
     cy.get('.govuk-button').click()
-    cy.get('#respondentCorrespondenceUseHomeAddress_Yes').click()
+    // cy.pause()
+    // Select Respondent Solicitor Scenarios 
+    cy.get('[data-target="conditional-need-to-know-sol-firm"] > .govuk-label').click()
     cy.get('.govuk-button').click()
+    cy.get('#respondentSolicitorFirm').type('DivRespondentSolicitorFirm')
+    cy.get('.govuk-button').click()
+    cy.get('.govuk-heading-l').contains(`Enter details of your wife's solicitor`)
+    cy.get('#result_3I4PJR6 > .govuk-button').click()
+    cy.get('#respondentSolicitorName').type(`Resp Solicitor's name`)
+    cy.get('#respondentSolicitorEmail').type(`${pfeRespSolemail}`)
+    cy.get('#respondentSolicitorReference').type('respSolRef001')
+    cy.get('#provided > .govuk-button').click()
+    // cy.get('#respondentCorrespondenceUseHomeAddress_Yes').click()
+    // cy.get('.govuk-button').click()
     cy.get('#adultery').click()
     cy.get('.govuk-button').click()
     cy.get('#reasonForDivorceAdulteryWishToName_Yes').click()
@@ -91,35 +100,43 @@ export class pfeAdulteryCostPayCard {
     cy.get('.govuk-button').click()
     cy.get('#legalProceedings_No').click()
     cy.get('.govuk-button').click()
-    cy.get('#financialOrder_No').click()
+    // cy.get('#financialOrder_No').click()
+    cy.get('#financialOrder_Yes').click()
+    cy.get('#petitioner').click()
+    cy.get('#children').click()
+    cy.get('.govuk-button').click()
     cy.get('.govuk-button').click()
     cy.get('.govuk-heading-l').contains('Do you want to apply to claim your divorce costs?')
-    cy.get('#no').click()
+    cy.get('#yes').click()
+    cy.get('#respondent').click()
+    cy.get('#correspondent').click()
     cy.get('.govuk-button').click()
     cy.get('.govuk-button').click()
+    // if demo we need to comment below step
     cy.get(':nth-child(2) > .govuk-button').click()
+    // if demo we need to comment above step
     cy.get('.govuk-heading-l').contains('Check your answers')
     cy.get('#confirmPrayer').click()
     cy.get('#confirmCheckYourAnswers').click()
     cy.get('.govuk-panel__title')
-    .then(function($AppComp){
-      const AppComptxt=$AppComp.text()
-      expect(AppComptxt).eq('Application complete')
-    })
+      .then(function ($AppComp) {
+        const AppComptxt = $AppComp.text()
+        expect(AppComptxt).eq('Application complete')
+      })
     cy.get('.govuk-body-reference-number')
-      .then(function($caseid){
-      ccdCaseId=$caseid.text().split(' ‐ ').join('').trim()
-      expect(ccdCaseId).eq(ccdCaseId)
-      cy.log('Case ID -->'+ ccdCaseId)
-      cy.wrap(ccdCaseId).as('pfeCaseId')
-      cy.writeFile('cypress/fixtures/pfe_Creted_CaseId.txt',`\n${ccdCaseId}`, { flag: 'a+' })
-      // return ccdCaseId
-  })
-  cy.screenshot('Application complete')
-  cy.log('Case before return ID -->'+ ccdCaseId)
-  const sum=cy.get('@pfeCaseId')
-  return sum
+      .then(function ($caseid) {
+        ccdCaseId = $caseid.text().split(' ‐ ').join('').trim()
+        expect(ccdCaseId).eq(ccdCaseId)
+        cy.log('Case ID -->' + ccdCaseId)
+        cy.wrap(ccdCaseId).as('pfeCaseId')
+        cy.writeFile('cypress/fixtures/pfe_Creted_CaseId.txt', `\nPFE Adultery With Cost::=> ${ccdCaseId}`, { flag: 'a+' })
+        cy.writeFile('cypress/fixtures/pfe_CaseId.json',
+          { ccdAatCaseId: `${ccdCaseId}` })
+      })
+    cy.screenshot('Application complete')
+    cy.log('Case before return ID -->' + ccdCaseId)
+    const sum = cy.get('@pfeCaseId')
+    return sum
+  }
 }
-
-}
-export default pfeAdulteryCostPayCard
+export default pfeAdulteryWithCostWithRespSol
