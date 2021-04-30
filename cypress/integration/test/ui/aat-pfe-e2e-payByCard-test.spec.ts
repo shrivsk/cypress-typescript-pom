@@ -38,7 +38,7 @@ describe('Successfully create Adultery case using PFE With Cost', () => {
 
 
   it('Successfully create basic Adultery case using PFE without Cost', async () => {
-    login.pfeAatlogin()
+    login.pfeDemologin()
     pfeAdulteryPayCard.adulteryCaseCostPaybyCard()
     exuiLoginPg.openCcdAatUrl()
     exuiLoginPg.enterCcdBetaUserID()

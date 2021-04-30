@@ -1,0 +1,1 @@
+{"name":"cypress-automation-typescript-pom","version":"1.0.0","dependencies":{"@types/jquery":{"version":"3.5.1","dependencies":{"@types/sizzle":{"version":"2.3.2"}}},"install":{"version":"0.13.0"},"typescript":{"version":"4.1.3"},"typescriptnpm":{"version":"1.0.1","dependencies":{"pluralize":{"version":"7.0.0"}}}}}

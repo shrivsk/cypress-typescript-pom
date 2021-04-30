@@ -1,8 +1,0 @@
-.idea
-node_modules
-tsc
-.history
-.gradle
-./cypress/report
-.cypress/screenshots
-./cypress/videos

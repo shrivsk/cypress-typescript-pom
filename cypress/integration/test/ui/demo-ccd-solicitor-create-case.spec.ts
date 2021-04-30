@@ -4,10 +4,12 @@ import 'cypress-wait-until';
 import { exuiLoginPage } from '../../pageObjects/exuiPages/loginPage'
 import caseFilter_Page from '../../pageObjects/exuiPages/exuiSolicitorPages/caseFilter_Page'
 import "../../../support/commands"
+import f5LoginPage from '../../pageObjects/f5loging'
 // ***********************************************
 // let ccdCaseId: { ccdAatCaseId: string }
 const exuiLoginPg = new exuiLoginPage()
 const caseFilter = new caseFilter_Page()
+const f5Login = new f5LoginPage()
 // ***********************************************
 describe('Successfully create Adultery case using PFE', () => {
   // beforeEach(function () {
@@ -18,6 +20,8 @@ describe('Successfully create Adultery case using PFE', () => {
   it('Successfully create basic Adultery case using CCD Solicitor', async () => {
     cy.clearCookies()
     cy.getCookies().should('be.empty')
+    cy.wait(10)
+    // f5Login.logintoF5Portal()
     // exuiLoginPg.openCcdDemoUrl()
     // exuiLoginPg.enterCcdSolicitorUserID('')
     // exuiLoginPg.enterPassword()

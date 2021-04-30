@@ -1,13 +1,14 @@
 /// <reference types="cypress" />
 // ***********************************************
 import { pfeLoginPage } from '../../pageObjects/pfepages/login-Page'
+import '../../../support/commands'
 // ***********************************************
 let ccdCaseId
 const login = new pfeLoginPage()
 // ***********************************************
 describe('take screenshort of the page ', () => {
 
-  it('open confluance and take screenshhort of each page', async () => {
+  it.skip('open confluance and take screenshhort of each page', async () => {
     cy.visit('https://tools.hmcts.net/confluence/')
     cy.get('#login-link').click()
     cy.get('#os_username').type('sumit.shrivastava')
@@ -22,6 +23,28 @@ describe('take screenshort of the page ', () => {
     cy.screenshot('People Directory Page >>'+`${num}`)
     }
   })
+    it.skip('open confluance and take screenshhort of Specifice page', async () => {
+      cy.visit('https://tools.hmcts.net/confluence/')
+      cy.get('#login-link').click()
+      cy.get('#os_username').type('sumit.shrivastava')
+      cy.get('#os_password').type('Oimage#01')
+      cy.get('#loginButton').click()
+      cy.visit('https://tools.hmcts.net/confluence/pages/viewpage.action?pageId=101090013&__ncforminfo=e9ZDXCL-czl8FXiVsEEceF6hxOhq7V5gwq6jzPnzk8lXKvE2hQKEAZJebRw7zhpZNnMA7iWZ4Ts=')
+      cy.screenshot('Reform Test Team Contact details') 
+  })
 
+  it.skip('open confluance and take screenshhort of Specifice page', async () => {
+    cy.clearCookies()
+    cy.getCookies().should('be.empty')
+    cy.visit('http://hotel-test.equalexperts.io/')
+    cy.pause()
+})
+
+it.only('open confluance and take screenshhort of Specifice page', async () => {
+  cy.login('https://portal.platform.hmcts.net/')
+})
 
 })
+
+
+

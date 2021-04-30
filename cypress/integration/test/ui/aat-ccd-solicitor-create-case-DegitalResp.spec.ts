@@ -4,22 +4,20 @@ import 'cypress-wait-until';
 import { exuiLoginPage } from '../../pageObjects/exuiPages/loginPage'
 import { aboutTheSolicitorPage } from '../../pageObjects/exuiPages/exuiSolicitorPages/solicitorCreateSolAboutTheSolicitor_Page'
 import caseFilter_Page from '../../pageObjects/exuiPages/exuiSolicitorPages/caseFilter_Page'
-import solicitorCreateSolMarriageCertificate_Page from '../../pageObjects/exuiPages/exuiSolicitorPages/solicitorCreateSolMarriageCertificate_Page'
 import "../../../support/commands"
 // ***********************************************
 // let ccdCaseId: { ccdAatCaseId: string }
 const exuiLoginPg = new exuiLoginPage()
 const caseFilter = new caseFilter_Page()
 const aboutTheSol = new aboutTheSolicitorPage()
-const enterMarrCertDls = new solicitorCreateSolMarriageCertificate_Page()
 // ***********************************************
-describe('Successfully create Adultery case using EXUI Manage Case', () => {
+describe('Successfully create Adultery case using PFE', () => {
   // beforeEach(function () {
   //   cy.fixture('Soliciter_CaseId').then((data) => {
   //     ccdAatCaseId = data
   //   })
   // })
-  it.only('Successfully create basic Adultery case using manage Case Pet Solicitor without Resp Sol digital', async () => {
+  it.only('Successfully create basic Adultery case using CCD Solicitor', async () => {
     cy.clearCookies()
     cy.getCookies().should('be.empty')
     // exuiLoginPg.openCcdAatUrl()
@@ -53,29 +51,63 @@ describe('Successfully create Adultery case using EXUI Manage Case', () => {
     cy.get('#D8RespondentFirstName').type('D8RespondentFirstName')
     cy.get('#D8RespondentNameAsOnMarriageCertificate-No').click()
     cy.get('#D8InferredRespondentGender').select('Female')
+    // cy.get('#D8DerivedRespondentHomeAddress').type('D8DerivedRespondentHomeAddress')
+    // cy.get('#D8DerivedRespondentCorrespondenceAddr').type('D8Derived Respondent Correspondence Addr')
     cy.get('[type="submit"]').click()
-    /* ++++++++++++++++++++WITHOUT RESPONDONE DIGITAL +++++++++++++++++++ */
-    cy.contains('Respondent service details - Apply for a divorce', { timeout: 50000 })
-    cy.get('#respondentSolicitorRepresented-No').click()
-    cy.get('#D8DerivedRespondentHomeAddress').type('D8DerivedRespondentHomeAddress')
-    cy.get('#D8DerivedRespondentCorrespondenceAddr').type('D8Derived Respondent Correspondence Addr')
+    /* +++++++++++++++++++++++++++++++++++++++++++++ */
+    cy.contains('Respondent service details',{ timeout: 5000 })
+    // cy.get('Respondent service details'
+    cy.get('#respondentSolicitorRepresented-Yes').click()
+    cy.get('#D8RespondentSolicitorName').type('Respondent solicitor name')
+    cy.get('#respondentSolicitorReference').type('Respondent solicitor reference')
+    cy.get('#D8RespondentSolicitorEmail').type('respondentSolicitor@mailinator.com')
+    cy.get('#D8RespondentSolicitorPhone').type('09999999999')
+    cy.get('#D8DerivedRespondentSolicitorAddr').type('Respondent solicitor firm/ DX address')
+    cy.get('#RespSolDigital-Yes').click()
+    cy.contains(`Respondent solicitor's firm`)
+    cy.get('.govuk-fieldset__legend > .heading-h2').should('contain','Search for an organisation')
+    cy.get('#search-org-text').type(`${Cypress.env('DivRespondentSolicitorFirm')}`)
+    cy.get('.td-select > a').click()
     cy.get('[type="submit"]').click()
-    /* ++++++++++++++++++++WITH RESPONDONE DIGITAL +++++++++++++++++++ */
-    // cy.contains('Respondent service details - Apply for a divorce', { timeout: 50000 })
-    // cy.get('#respondentSolicitorRepresented-Yes').click()
-    // cy.get('#D8RespondentSolicitorName').type('Respondent solicitor name')
-    // cy.get('#respondentSolicitorReference').type('Respondent solicitor reference')
-    // cy.get('#D8RespondentSolicitorEmail').type('respondentSolicitor@mailinator.com')
-    // cy.get('#D8RespondentSolicitorPhone').type('09999999999')
-    // cy.get('#D8DerivedRespondentSolicitorAddr').type('Respondent solicitor firm/ DX address')
-    // cy.get('#RespSolDigital-Yes').click()
-    // cy.contains(`Respondent solicitor's firm`)
-    // cy.get('.govuk-fieldset__legend > .heading-h2').should('contain', 'Search for an organisation')
-    // cy.get('#search-org-text').type(`${Cypress.env('DivRespondentSolicitorFirm')}`)
-    // cy.get('.td-select > a').click()
-    // cy.get('[type="submit"]').click()
-    /* +++++++++++++++++++++WITH RESPONDONE DIGITAL END++++++++++++++++++++++++ */
-    // solicitorCreateSolMarriageCertificate_Page.ts
+/* /* +++++++++++++++++++++++++++++++++++++++++++++ */
+/* OLD - looks like - Marriage certificate details - Apply for a divorce 
+    solicitorCreateSolMarriageCertificate_Page.ts */
+/* /* +++++++++++++++++++++++++++++++++++++++++++++ */
+    cy.get('#D8MarriageDate-day').type('11')
+    cy.get('#D8MarriageDate-month').type('11')
+    cy.get('#D8MarriageDate-year').type('2011')
+    cy.get('#D8MarriagePetitionerName').type('D8Marriage PetitionerName')
+    cy.get('#D8MarriageRespondentName').type('D8Marriage RespondentName')
+    cy.get('#D8MarriedInUk-Yes').click()
+    cy.get('#D8MarriedInUk-No').click()
+    cy.get('#D8MarriagePlaceOfMarriage').type('place of Marriage')
+    cy.get('#D8CountryName').type('Country of Marriage')
+    cy.get('[type="submit"]').click()
+
+   /*  // solicitorCreateSolJurisdiction_Page.ts */
+    // cy.pause()
+    // cy.get('#D8JurisdictionConnection-G').click()
+    // cy.get('#D8JurisdictionConnection-F').click()
+    // cy.get('#D8JurisdictionConnection-E').click()
+    // cy.get('#D8JurisdictionConnection-D').click()
+    // cy.get('#D8JurisdictionConnection-C').click()
+    // cy.get('#D8JurisdictionConnection-B').click()
+    // cy.get('#D8JurisdictionConnection-A').click()
+    // #D8JurisdictionConnectionNewPolicy-A --- ABOVE IS THE OLD WAY 
+    cy.get('#D8JurisdictionConnectionNewPolicy-A').click()
+    cy.get('#D8JurisdictionConnectionNewPolicy-B').click()
+    cy.get('#D8JurisdictionConnectionNewPolicy-C').click()
+    cy.get('#D8JurisdictionConnectionNewPolicy-D').click()
+    cy.get('#D8JurisdictionConnectionNewPolicy-E').click()
+    cy.get('#D8JurisdictionConnectionNewPolicy-F').click()
+    cy.get('#D8JurisdictionConnectionNewPolicy-G').click()
+    cy.get('#D8JurisdictionConnectionNewPolicy-H').click()
+    cy.get('#D8JurisdictionConnectionNewPolicy-I').click()
+    cy.get('[type="submit"]').click()
+
+/* +++++++++++++++++++++++++++++++++++++++++++++ */
+/* new - looks like - Marriage certificate details - Apply for a divorce
+solicitorCreateSolMarriageCertificate_Page.ts  */
     // cy.get('#D8MarriageDate-day').type('11')
     // cy.get('#D8MarriageDate-month').type('11')
     // cy.get('#D8MarriageDate-year').type('2011')
@@ -86,20 +118,7 @@ describe('Successfully create Adultery case using EXUI Manage Case', () => {
     // cy.get('#D8MarriagePlaceOfMarriage').type('place of Marriage')
     // cy.get('#D8CountryName').type('Country of Marriage')
     // cy.get('[type="submit"]').click()
-
-    // solicitorCreateSolJurisdiction_Page.ts
-    cy.get('#D8JurisdictionConnection-G').click()
-    cy.get('#D8JurisdictionConnection-F').click()
-    cy.get('#D8JurisdictionConnection-E').click()
-    cy.get('#D8JurisdictionConnection-D').click()
-    cy.get('#D8JurisdictionConnection-C').click()
-    cy.get('#D8JurisdictionConnection-B').click()
-    cy.get('#D8JurisdictionConnection-A').click()
-    cy.get('[type="submit"]').click()
-
-    /* solicitorCreateSolMarriageCertificate_Page details  */
-    enterMarrCertDls.enterMarriageCertificateDetails()
-    /* solicitorCreateSolMarriageCertificate_Page details  */
+/* +++++++++++++++++++++++++++++++++++++++++++++ */
     // cy.pause()
     // solicitorCreateSolReasonForDivorce_Page.ts
     cy.get('#D8ReasonForDivorce').select('Adultery')//[5-year separation,2-year separation (with consent),Desertion,Behaviour,Adultery]
@@ -158,19 +177,17 @@ describe('Successfully create Adultery case using EXUI Manage Case', () => {
     cy.get('[type="submit"]').click()
 
     // checkYourAnswers_Page.ts
-    cy.get('.heading-h1').should('contain', 'Apply for a divorce')
+    cy.get('.govuk-heading-l').should('contain', 'Apply for a divorce')
     cy.get('.heading-h2').should('contain', 'Check your answers')
     cy.get('[type="submit"]').click()
-    // cy.get('.alert-message')
-    // cy.get('.markdown > p')
+
     cy.get('.alert-message').then(function ($caseid) {
       let ccdCaseId = $caseid.text().replace(/[^0-9]/g, '')
       // var num = txt.replace(/[^0-9]/g,'');
       expect(ccdCaseId).eq(ccdCaseId)
       cy.log('Case ID -->' + ccdCaseId)
       // cy.wrap(ccdCaseId).as('pfeCaseId')
-      // cy.writeFile('cypress/fixtures/Soliciter_Creted_CaseId.txt', `\n${ccdCaseId}`, { flag: 'a+' })
-      cy.writeFile('cypress/fixtures/Soliciter_Creted_CaseId.txt', `\nSolicitor without respondent::=> ${ccdCaseId}`, { flag: 'a+' })
+      cy.writeFile('cypress/fixtures/Soliciter_Creted_CaseId.txt', `\n${ccdCaseId}`, { flag: 'a+' })
       cy.writeFile('cypress/fixtures/Soliciter_CaseId.json',
         { ccdCaseId: `${ccdCaseId}` })
     })
@@ -209,26 +226,26 @@ describe('Successfully create Adultery case using EXUI Manage Case', () => {
     cy.get('[type="submit"]').click()
     cy.get('[type="submit"]').click()
     cy.get('[type="submit"]').click()
-    cy.get('.heading-h1').should('contain', 'Case submission')
-    cy.get('.check-your-answers > .heading-h2').should('contain', 'Check your answers')
+    cy.get('.govuk-heading-l').should('contain','Case submission')
+    cy.get('.check-your-answers > .heading-h2').should('contain','Check your answers')
     cy.get('[type="submit"]').click()
 
     // payment done using Fee account 
-    /*     cy.get('#SolPaymentHowToPay').select('Fee account')
-        cy.get('[type="submit"]').click()
-        // cy.get('#PbaNumbers').select('PBA0077051')
-        cy.get('#PbaNumbers').select('PBA0088063')
-        cy.get('#FeeAccountReference').type('Active PBA')
-        cy.get('[type="submit"]').click()
-        cy.get('[type="submit"]').click()
-        cy.get('[type="submit"]').click()
-        cy.get('.heading-h1').should('contain', 'Case submission') 
-        // cy.get('.check-your-answers > .heading-h2').should('contain','Check your answers')
-        cy.get('.markdown > h1').should('contain', 'Before you submit')
-        cy.get('[type="submit"]').click()
-        cy.get('.heading-h1').should('contain', 'Case submission')
-        cy.get('.check-your-answers > .heading-h2').should('contain', 'Check your answers')
-        cy.get('[type="submit"]').click()*/
+/*     cy.get('#SolPaymentHowToPay').select('Fee account')
+    cy.get('[type="submit"]').click()
+    // cy.get('#PbaNumbers').select('PBA0077051')
+    cy.get('#PbaNumbers').select('PBA0088063')
+    cy.get('#FeeAccountReference').type('Active PBA')
+    cy.get('[type="submit"]').click()
+    cy.get('[type="submit"]').click()
+    cy.get('[type="submit"]').click()
+    cy.get('.heading-h1').should('contain', 'Case submission') 
+    // cy.get('.check-your-answers > .heading-h2').should('contain','Check your answers')
+    cy.get('.markdown > h1').should('contain', 'Before you submit')
+    cy.get('[type="submit"]').click()
+    cy.get('.heading-h1').should('contain', 'Case submission')
+    cy.get('.check-your-answers > .heading-h2').should('contain', 'Check your answers')
+    cy.get('[type="submit"]').click()*/
 
     cy.get('[data-ng-transclude=""] > .alert-message').should('contain', 'has been updated with event: Case submission')
 
@@ -245,6 +262,6 @@ describe('Successfully create Adultery case using EXUI Manage Case', () => {
       cy.visit(`${Cypress.env("ccdAatUrl")}` + '/case-details/' + data.ccdCaseId)
       cy.reload(true)
     })
-
+  
   })
 })

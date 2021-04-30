@@ -1,0 +1,8 @@
+{
+  "authority": "url",
+  "clientID": "api-client-id",
+  "clientSecret": "api",
+  "apiScopes": "asdfa",
+  "username": "asdf",
+  "password": "password"
+}

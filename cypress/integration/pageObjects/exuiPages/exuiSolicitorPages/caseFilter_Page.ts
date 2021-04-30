@@ -33,8 +33,9 @@ buttonClick() {
 }
 
 caseFilterPageForAAT() {
-  const createCase = cy.get(':nth-child(2) > .hmcts-primary-navigation__link',{timeout: 50000}).should('be.visible')
-  createCase.click()
+  // const createCase = cy.get('.hmcts-primary-navigation__item').find('Create case',{timeout: 50000}).should('be.visible')
+  // createCase.click()
+  cy.visit('https://manage-case.aat.platform.hmcts.net/cases/case-filter')
   const CcJurisdiction = cy.get('#cc-jurisdiction')
   CcJurisdiction.select('Family Divorce', { timeout: 30000 }).should('be.visible')
   const caseType = cy.get('#cc-case-type') 

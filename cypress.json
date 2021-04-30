@@ -1,5 +1,6 @@
 {
   "integrationFolder": "cypress/integration/test",
+  "chromeWebSecurity": false,
   "projectId": "kywcy5",
   "supportFile": "cypress/support/commands.ts",
   "screenshotOnRunFailure": true,
@@ -12,6 +13,10 @@
     "openMode": 1
   },
   "env": {
+    "tenantId":"531ff96d-0ae9-462a-8d2d-bec7c0b42082",
+    "clientId":"ccd_gateway",
+    "clientSecret":"thUphEveC2Ekuqedaneh4jEcRuba4t2t",
+
 
     "aatTestingSupportUrl": "https://idam-api.aat.platform.hmcts.net/testing-support/accounts",
     "demoTestingSupportUrl": "https://idam-api.demo.platform.hmcts.net/testing-support/accounts",
